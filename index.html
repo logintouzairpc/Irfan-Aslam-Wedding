@@ -1,0 +1,513 @@
+<!doctype html>
+<html lang="ur">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#090B10">
+<title>Irfan Aslam | Walima Ceremony</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Amiri+Quran&family=Cinzel+Decorative:wght@700&family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,400&family=DM+Sans:wght@400;500;600;700&family=Great+Vibes&family=Noto+Nastaliq+Urdu:wght@400;600;700&family=Reem+Kufi:wght@500;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#0A0D14;
+  --panel:rgba(18, 24, 38, 0.78);
+  --rosegold:#E0A899;
+  --rosegold-glow:#FADCD5;
+  --copper:#A36353;
+  --cream:#FFF5F2;
+  --muted:rgba(255, 245, 242, 0.7);
+  --line:rgba(224, 168, 153, 0.26);
+  --shadow:0 30px 80px rgba(0,0,0,0.65);
+  --r:24px;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{min-width:320px;background:var(--bg);color:var(--cream);font:16px/1.6 "DM Sans",sans-serif;overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;z-index:-5;opacity:.15;background-image:radial-gradient(rgba(224, 168, 153, .4) .8px,transparent .8px);background-size:26px 26px;pointer-events:none}
+button,input,select{font:inherit}
+button,a{-webkit-tap-highlight-color:transparent}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--rosegold);outline-offset:4px}
+
+.ambient{position:fixed;inset:0;z-index:-4;pointer-events:none;background:radial-gradient(circle at 50% 15%,rgba(163, 99, 83, 0.28),transparent 45%),radial-gradient(circle at 10% 80%,rgba(224, 168, 153, 0.12),transparent 30%),var(--bg)}
+
+/* 3D Gate (Midnight Navy + Rose Gold) */
+.opening-viewport{position:fixed;inset:0;z-index:90;display:flex;perspective:1400px;overflow:hidden;transition:opacity 1.2s ease, visibility 1.2s ease}
+.opening-viewport.hide{opacity:0;visibility:hidden;pointer-events:none}
+
+.gate-half{
+  width:50%;height:100%;background:radial-gradient(circle at 50% 50%, #151C2C 0%, #080A0F 90%);
+  position:relative;transition:transform 1.4s cubic-bezier(.77,0,.175,1);
+  box-shadow:inset 0 0 60px rgba(0,0,0,.85);
+}
+.gate-left{transform-origin:left center;border-right:1px solid rgba(224, 168, 153, 0.4)}
+.gate-right{transform-origin:right center;border-left:1px solid rgba(224, 168, 153, 0.4)}
+
+.gate-half:before{content:"";position:absolute;inset:20px;border:1px solid rgba(224, 168, 153, 0.16);border-radius:12px}
+
+.opening-viewport.open .gate-left{transform:rotateY(-112deg)}
+.opening-viewport.open .gate-right{transform:rotateY(112deg)}
+
+.wax-seal{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:95;
+  width:120px;height:120px;border-radius:50%;cursor:pointer;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  background:radial-gradient(circle at 35% 28%,#FADCD5,#A36353 78%);
+  border:3px solid #FFF5F2;box-shadow:0 12px 35px rgba(0,0,0,.65), 0 0 30px rgba(224, 168, 153, 0.35);
+  transition:.6s cubic-bezier(.175,.885,.32,1.275);
+}
+.wax-seal:hover{transform:translate(-50%,-50%) scale(1.06)}
+.wax-seal span{font:700 28px 'Cinzel',serif;color:#181014;line-height:1}
+.wax-seal small{font:700 9px 'Cinzel',serif;letter-spacing:.22em;color:#451D18;margin-top:6px}
+.opening-viewport.open .wax-seal{opacity:0;transform:translate(-50%,-50%) scale(.4) rotate(25deg)}
+
+.open-hint{position:absolute;bottom:15%;left:50%;transform:translateX(-50%);z-index:95;font-size:11px;letter-spacing:.28em;color:var(--rosegold-glow);text-transform:uppercase;animation:breathe 2.2s infinite}
+@keyframes breathe{50%{opacity:.45;transform:translate(-50%,4px)}}
+
+/* Rose Petals */
+.petal{
+  position:fixed;background:linear-gradient(135deg,#F5B5A7,#C96D5C);
+  border-radius:150% 0 150% 0;opacity:.8;pointer-events:none;z-index:80;
+  animation:fall linear infinite;
+}
+@keyframes fall{
+  0%{transform:translate(0,-20px) rotate(0deg);opacity:.9}
+  100%{transform:translate(120px,105vh) rotate(360deg);opacity:0}
+}
+
+.site{opacity:0;visibility:hidden;transition:opacity 1s ease}
+.site.ready{opacity:1;visibility:visible}
+
+.topbar{position:fixed;z-index:40;top:0;left:0;right:0;display:flex;justify-content:space-between;align-items:center;padding:16px clamp(16px,4vw,56px);background:linear-gradient(to bottom,rgba(10, 13, 20, 0.95),transparent)}
+.brand{font:600 18px Cinzel,serif;color:var(--rosegold-glow)}
+.actions{display:flex;gap:10px}
+.icon-btn,.pill,.gold-btn,.outline-btn{min-height:42px;border-radius:999px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:.25s}
+.icon-btn{width:42px;border:1px solid var(--line);background:rgba(255,255,255,.05);color:var(--cream)}
+.pill,.outline-btn{padding:8px 18px;border:1px solid var(--line);background:rgba(255,255,255,.05);backdrop-filter:blur(10px);font-size:13px;color:var(--cream)}
+.gold-btn{padding:12px 26px;border:1px solid var(--rosegold);color:#1F1316;background:linear-gradient(135deg,#FADCD5,#E0A899);font-weight:700;font-size:13px}
+.gold-btn:hover{transform:translateY(-2px);box-shadow:0 10px 25px rgba(224, 168, 153, 0.35)}
+
+.progress{position:fixed;z-index:45;left:0;top:0;height:2px;width:0;background:linear-gradient(90deg,#A36353,#FADCD5)}
+
+.section{position:relative;padding:90px 20px 70px;display:grid;place-items:center;text-align:center;border-bottom:1px solid rgba(224, 168, 153, 0.1)}
+.inner{width:min(860px,100%);margin:auto}
+
+.eyebrow{color:var(--rosegold);text-transform:uppercase;letter-spacing:.24em;font-size:11px;margin-bottom:12px}
+h1,h2,h3{font-family:Cinzel,serif;font-weight:600;line-height:1.15;color:var(--rosegold-glow)}
+h2{font-size:clamp(28px,4.5vw,48px)}
+
+/* Calligraphy Styles */
+.bismillah{
+  font-family: 'Amiri Quran', 'Reem Kufi', serif;
+  font-size: clamp(26px, 4vw, 36px);
+  color: var(--rosegold-glow);
+  margin-bottom: 12px;
+  direction: rtl;
+  letter-spacing: 1px;
+  text-shadow: 0 0 20px rgba(245, 181, 167, 0.3);
+}
+
+.ayat-box{
+  padding: 28px clamp(18px,4vw,36px);
+  margin: 20px auto 0;
+  border-radius: var(--r);
+  background: var(--panel);
+  border: 1px solid var(--line);
+  backdrop-filter: blur(14px);
+}
+
+.arabic{
+  font-family: 'Amiri Quran', 'Reem Kufi', serif;
+  font-weight: 400;
+  font-size: clamp(20px, 3.2vw, 30px);
+  line-height: 2.1;
+  direction: rtl;
+  color: var(--cream);
+  text-shadow: 0 0 15px rgba(224, 168, 153, 0.2);
+}
+
+.urdu{
+  font-family: 'Noto Nastaliq Urdu', serif;
+  font-size: clamp(17px, 2.5vw, 22px);
+  line-height: 2.3;
+  color: var(--rosegold);
+  margin-top: 14px;
+  direction: rtl;
+}
+
+.trans{font:italic 14px "Cormorant Garamond",serif;color:var(--muted);margin-top:10px}
+
+.couple-title{margin:24px 0 14px}
+.couple-name{font:500 clamp(38px,7vw,64px) "Great Vibes",cursive;color:var(--rosegold-glow);line-height:1.1}
+.and-symbol{font:18px 'Cinzel',serif;letter-spacing:0.25em;text-transform:lowercase;color:var(--rosegold);margin:6px 0}
+
+/* Scratch Card Date */
+.scratch-box{
+  position:relative;width:300px;height:140px;margin:24px auto 14px;border-radius:18px;overflow:hidden;
+  border:1.5px dashed var(--rosegold);box-shadow:var(--shadow);background:linear-gradient(135deg,#1F2637,#141926);
+}
+.scratch-secret{
+  position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  color:var(--cream);text-align:center;padding:12px;
+}
+.scratch-secret h4{font:700 11px Cinzel,serif;letter-spacing:.2em;color:var(--rosegold)}
+.scratch-secret .date-reveal{font:700 24px Cinzel,serif;color:var(--rosegold-glow);margin:4px 0}
+.scratch-secret p{font-size:12px;color:var(--muted);font-weight:500}
+.scratch-canvas{position:absolute;inset:0;cursor:pointer;touch-action:none;z-index:2}
+
+/* Timing Box */
+.time-box{
+  width:300px;margin:12px auto 24px;border-radius:18px;padding:16px;
+  border:1px solid var(--line);background:var(--panel);box-shadow:var(--shadow);
+  backdrop-filter:blur(12px);display:flex;flex-direction:column;align-items:center;justify-content:center;
+}
+.time-box h4{font:700 11px Cinzel,serif;letter-spacing:.22em;color:var(--rosegold);text-transform:uppercase}
+.time-box .time-reveal{font:700 24px Cinzel,serif;color:var(--rosegold-glow);margin:4px 0}
+.time-box p{font-size:12px;color:var(--muted);font-weight:500}
+
+/* Countdown */
+.countdown{display:flex;justify-content:center;gap:12px;margin:32px auto}
+.time-slot{min-width:85px;padding:16px 12px;border-radius:16px;background:var(--panel);border:1px solid var(--line);backdrop-filter:blur(10px)}
+.time-slot strong{display:block;font:700 32px Cinzel,serif;color:var(--rosegold-glow)}
+.time-slot span{font-size:10px;text-transform:uppercase;letter-spacing:.14em;color:var(--muted)}
+
+.venue-box{margin-top:24px;padding:34px clamp(18px,4vw,36px);border-radius:var(--r);background:var(--panel);border:1px solid var(--line);text-align:center}
+.tools{display:flex;justify-content:center;flex-wrap:wrap;gap:12px;margin-top:22px}
+
+.blessings{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:24px}
+.blessing{padding:18px 16px;border-radius:16px;background:var(--panel);border:1px solid var(--line);cursor:pointer;text-align:right;transition:.25s}
+.blessing:hover,.blessing.selected{border-color:var(--rosegold);background:rgba(224, 168, 153, 0.16);transform:translateY(-2px)}
+.blessing span{
+  font-family: 'Noto Nastaliq Urdu', 'Amiri Quran', serif;
+  font-size: 16px;
+  line-height: 2.1;
+  direction: rtl;
+  color: var(--rosegold-glow);
+  display: block;
+}
+
+.footer{padding:60px 20px;text-align:center;border-top:1px solid var(--line)}
+.footer strong{font:600 24px Cinzel,serif;color:var(--rosegold-glow)}
+
+.toast{position:fixed;z-index:100;left:50%;bottom:28px;transform:translate(-50%,20px);opacity:0;pointer-events:none;padding:12px 22px;border-radius:999px;background:var(--rosegold);color:#181014;font-size:13px;font-weight:700;transition:.3s}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+
+@media(max-width:760px){
+  .blessings{grid-template-columns:1fr}
+  .time-slot{min-width:70px;padding:12px 8px}
+  .time-slot strong{font-size:26px}
+}
+</style>
+</head>
+<body>
+
+<div class="ambient"></div>
+
+<div class="opening-viewport" id="gate">
+  <div class="gate-half gate-left"></div>
+  <div class="gate-half gate-right"></div>
+  <div class="wax-seal" id="seal-trigger" role="button" aria-label="Open Invitation">
+    <span>IA</span>
+    <small>TAP TO OPEN</small>
+  </div>
+  <div class="open-hint">Tap seal to unlock invitation · ✦</div>
+</div>
+
+<div class="progress" id="progress"></div>
+
+<div class="site" id="site">
+  <header class="topbar">
+    <div class="brand">Irfan Aslam</div>
+    <div class="actions">
+      <button class="pill" onclick="shareInvite()">Share</button>
+      <button class="icon-btn" id="sound-btn" onclick="toggleAudio()" aria-label="Sound Toggle">🔇</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="section" id="home">
+      <div class="inner">
+        <div class="bismillah">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
+        <div class="eyebrow">The Blessed Walima Ceremony</div>
+        
+        <div class="couple-title">
+          <div class="couple-name">Irfan Aslam</div>
+          <div class="and-symbol">weds</div>
+          <div class="couple-name">Daughter of M.Arshad</div>
+        </div>
+        
+        <p class="lead" id="greeting" style="color:var(--muted); max-width:540px; margin:auto;">
+          With the grace of Allah Almighty &amp; the blessings of our parents, you are warmly invited to celebrate the Walima Ceremony.
+        </p>
+
+        <!-- 1. DATE PORTION (Scratch Card) -->
+        <div class="scratch-box">
+          <div class="scratch-secret">
+            <h4>WALIMA DATE</h4>
+            <div class="date-reveal">20 OCT 2026</div>
+            <p>Tuesday • Blessed Day</p>
+          </div>
+          <canvas id="scratch-canvas" class="scratch-canvas" width="300" height="140"></canvas>
+        </div>
+        <p style="font-size:11px; color:var(--rosegold); letter-spacing:.15em; text-transform:uppercase; margin-bottom:12px;">Scratch to reveal date</p>
+
+        <!-- 2. TIME PORTION -->
+        <div class="time-box">
+          <h4>Ceremony Timing</h4>
+          <div class="time-reveal">12:00 PM</div>
+          <p>12:00 PM Sharp</p>
+        </div>
+
+        <div class="tools">
+          <button class="gold-btn" onclick="openWhatsApp()">Contact on WhatsApp</button>
+          <button class="outline-btn" onclick="downloadCalendar()">Add to Calendar</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Quranic Verse -->
+    <section class="section" style="padding:60px 20px;">
+      <div class="inner">
+        <div class="ayat-box">
+          <div class="arabic">وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا</div>
+          <div class="urdu">اور اُس کی نشانیوں میں سے یہ ہے کہ اُس نے تمہارے لیے تمہاری ہی جنس سے جوڑے بنائے تاکہ تم اُن سے سکون حاصل کرو</div>
+          <div class="trans">“And among His signs is that He created for you mates from among yourselves, that you may dwell in tranquility with them...”</div>
+          <div style="font-size:12px; color:var(--rosegold); margin-top:10px;">— Surah Ar-Rum: 21</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Countdown Section -->
+    <section class="section">
+      <div class="inner">
+        <div class="eyebrow">Countdown To Forever</div>
+        <h2>The Big Day Awaits</h2>
+        <div class="countdown">
+          <div class="time-slot"><strong id="days">00</strong><span>days</span></div>
+          <div class="time-slot"><strong id="hours">00</strong><span>hours</span></div>
+          <div class="time-slot"><strong id="minutes">00</strong><span>minutes</span></div>
+          <div class="time-slot"><strong id="seconds">00</strong><span>seconds</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Venue & Contact Details -->
+    <section class="section" id="venue">
+      <div class="inner">
+        <div class="eyebrow">Location &amp; Contact</div>
+        <h2>Lavish Marquee</h2>
+        <div class="venue-box">
+          <p style="font-size:18px; color:var(--rosegold-glow); font-family:'Cinzel',serif; margin-bottom:8px;">Bypass Road, Khanpur</p>
+          <p style="color:var(--muted); font-size:14px; margin-bottom:6px;">Tuesday, 20 October 2026 • 12:00 PM Sharp</p>
+          <p style="color:var(--rosegold); font-size:14px; margin-bottom:16px;">Contact Number: <strong>0303-3550035 (Hammad Ch)</strong></p>
+          <div class="tools">
+            <a class="gold-btn" href="https://maps.app.goo.gl/NvZPmg3Qhw5EnfEXA" target="_blank" rel="noopener noreferrer">Open in Google Maps ↗</a>
+            <a class="gold-btn" href="https://wa.me/923033550035?text=Assalam-o-Alaikum%20Hammad%20Bhai,%20Walima%20ke%20hawale%20se..." target="_blank" rel="noopener noreferrer">WhatsApp Chat 💬</a>
+            <a class="outline-btn" href="tel:03033550035">Call: 0303-3550035 📞</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Duas Section -->
+    <section class="section">
+      <div class="inner">
+        <div class="eyebrow">Send Prayers &amp; Duas</div>
+        <h2>Mubarakbaad</h2>
+        <div class="blessings">
+          <div class="blessing" onclick="selectBlessing(this)"><span>اللہ تعالیٰ اس جوڑے کو ہمیشہ خوش و خرم رکھے۔ آمین!</span></div>
+          <div class="blessing" onclick="selectBlessing(this)"><span>بارک اللہ لکما وبارك عليكما وجمع بينكما في خیر!</span></div>
+          <div class="blessing" onclick="selectBlessing(this)"><span>نئی زندگی کی شروعات پر ڈھیر ساری مبارکباد اور نیک تمنائیں۔</span></div>
+          <div class="blessing" onclick="selectBlessing(this)"><span>اللہ پاک آپ دونوں کو ہر نظرِ بد سے محفوظ رکھے۔ آمین!</span></div>
+        </div>
+        <div class="tools">
+          <button class="gold-btn" onclick="sendBlessing()">Send Dua via WhatsApp</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <strong>Irfan Aslam</strong>
+    <p style="font-size:13px; color:var(--muted); margin:8px 0 16px;">Walima Ceremony • 20 October 2026 • Lavish Marquee, Khanpur</p>
+    <div style="font-family:'Amiri Quran',serif; color:var(--rosegold); font-size:20px; line-height: 2;">بارك الله لكما وبارك عليكما وجمع بينكما في خير</div>
+  </footer>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<!-- Background Islamic Audio -->
+<audio id="bg-audio" loop preload="none">
+  <source src="https://cdn.islamic.network/quran/audio/128/ar.alafasy/300.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+const PHONE = "923033550035";
+const gate = document.getElementById('gate');
+const seal = document.getElementById('seal-trigger');
+const site = document.getElementById('site');
+const audio = document.getElementById('bg-audio');
+const soundBtn = document.getElementById('sound-btn');
+
+seal.addEventListener('click', () => {
+  gate.classList.add('open');
+  audio.volume = 0.25;
+  audio.play().then(() => soundBtn.textContent = '🔊').catch(() => {});
+  createPetals();
+  setTimeout(() => {
+    gate.classList.add('hide');
+    site.classList.add('ready');
+  }, 900);
+});
+
+function toggleAudio() {
+  if (audio.paused) {
+    audio.play().then(() => soundBtn.textContent = '🔊').catch(() => showToast('Audio autoplay blocked'));
+  } else {
+    audio.pause();
+    soundBtn.textContent = '🔇';
+  }
+}
+
+function createPetals() {
+  for (let i = 0; i < 25; i++) {
+    setTimeout(() => {
+      const p = document.createElement('div');
+      p.className = 'petal';
+      p.style.left = Math.random() * 100 + 'vw';
+      p.style.width = (Math.random() * 10 + 8) + 'px';
+      p.style.height = (Math.random() * 14 + 10) + 'px';
+      p.style.animationDuration = (Math.random() * 3 + 3.5) + 's';
+      document.body.appendChild(p);
+      setTimeout(() => p.remove(), 6000);
+    }, i * 220);
+  }
+}
+
+// Scratch Canvas (Date reveal)
+const canvas = document.getElementById('scratch-canvas');
+const ctx = canvas.getContext('2d');
+let scratching = false;
+
+ctx.fillStyle = '#4A2A28';
+ctx.fillRect(0, 0, canvas.width, canvas.height);
+ctx.strokeStyle = '#E0A899';
+ctx.lineWidth = 4;
+ctx.strokeRect(6, 6, canvas.width - 12, canvas.height - 12);
+ctx.font = "bold 13px 'Cinzel', serif";
+ctx.fillStyle = "#FADCD5";
+ctx.textAlign = "center";
+ctx.fillText("✦ SCRATCH FOR DATE ✦", canvas.width / 2, canvas.height / 2 + 5);
+
+function scratch(e) {
+  if (!scratching) return;
+  const rect = canvas.getBoundingClientRect();
+  const x = (e.clientX || (e.touches && e.touches[0].clientX)) - rect.left;
+  const y = (e.clientY || (e.touches && e.touches[0].clientY)) - rect.top;
+
+  ctx.globalCompositeOperation = 'destination-out';
+  ctx.beginPath();
+  ctx.arc(x, y, 20, 0, Math.PI * 2, false);
+  ctx.fill();
+}
+
+canvas.addEventListener('mousedown', () => scratching = true);
+canvas.addEventListener('mousemove', scratch);
+window.addEventListener('mouseup', () => scratching = false);
+
+canvas.addEventListener('touchstart', () => scratching = true);
+canvas.addEventListener('touchmove', scratch);
+window.addEventListener('touchend', () => scratching = false);
+
+// Countdown Target: Tuesday, 20 Oct 2026 at 12:00 PM (PKT UTC+5)
+const weddingDate = new Date('2026-10-20T12:00:00+05:00').getTime();
+function updateCountdown() {
+  const diff = weddingDate - Date.now();
+  if (diff > 0) {
+    document.getElementById('days').textContent = String(Math.floor(diff / 86400000)).padStart(2, '0');
+    document.getElementById('hours').textContent = String(Math.floor((diff % 86400000) / 3600000)).padStart(2, '0');
+    document.getElementById('minutes').textContent = String(Math.floor((diff % 3600000) / 60000)).padStart(2, '0');
+    document.getElementById('seconds').textContent = String(Math.floor((diff % 60000) / 1000)).padStart(2, '0');
+  }
+}
+setInterval(updateCountdown, 1000);
+updateCountdown();
+
+function openWhatsApp() {
+  const text = `Assalam-o-Alaikum!\n\nIrfan Aslam ki Walima Ceremony ke hawale se rabta karna chahta hoon.`;
+  window.open(`https://wa.me/${PHONE}?text=${encodeURIComponent(text)}`, '_blank');
+}
+
+function selectBlessing(el) {
+  document.querySelectorAll('.blessing').forEach(b => b.classList.remove('selected'));
+  el.classList.add('selected');
+}
+
+function sendBlessing() {
+  const selected = document.querySelector('.blessing.selected span');
+  if (!selected) return showToast('Pehle koi dua select karein.');
+  const text = `Assalam-o-Alaikum!\n\n*Walima Mubarakbaad & Dua:*\n"${selected.textContent}"\n\nDuas for Irfan Aslam & Family!`;
+  window.open(`https://wa.me/${PHONE}?text=${encodeURIComponent(text)}`, '_blank');
+}
+
+function downloadCalendar() {
+  const ics = [
+    'BEGIN:VCALENDAR',
+    'VERSION:2.0',
+    'PRODID:-//Irfan Aslam//Walima//EN',
+    'BEGIN:VEVENT',
+    'DTSTART;TZID=Asia/Karachi:20261020T120000',
+    'DTEND;TZID=Asia/Karachi:20261020T160000',
+    'SUMMARY:Irfan Aslam — Walima Ceremony',
+    'DESCRIPTION:Walima Ceremony at Lavish Marquee, Bypass Road, Khanpur',
+    'LOCATION:Lavish Marquee, BypassRoad, Khanpur',
+    'END:VEVENT',
+    'END:VCALENDAR'
+  ].join('\r\n');
+
+  const blob = new Blob([ics], { type: 'text/calendar' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'Irfan-Aslam-Walima.ics';
+  a.click();
+  showToast('Calendar file download ho rahi hai.');
+}
+
+async function shareInvite() {
+  const shareData = {
+    title: 'Irfan Aslam — Walima Ceremony',
+    text: 'You are cordially invited to the Walima Ceremony of Irfan Aslam.',
+    url: window.location.href
+  };
+  try {
+    if (navigator.share) await navigator.share(shareData);
+    else {
+      await navigator.clipboard.writeText(window.location.href);
+      showToast('Link copy ho gaya hai!');
+    }
+  } catch (err) {}
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2500);
+}
+
+const guestParam = new URLSearchParams(window.location.search).get('guest');
+if (guestParam) {
+  document.getElementById('greeting').textContent = `Dear ${guestParam}, your presence will make our Walima complete.`;
+}
+
+window.addEventListener('scroll', () => {
+  const max = document.documentElement.scrollHeight - innerHeight;
+  document.getElementById('progress').style.width = (max ? (scrollY / max * 100) : 0) + '%';
+}, { passive: true });
+</script>
+</body>
+</html>
